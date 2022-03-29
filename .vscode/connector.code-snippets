@@ -1,0 +1,27 @@
+{
+  "Vue Single File Component (POSTCSS)": {
+    "prefix": "connector-sfc",
+    "body": [
+      "<i18n locale=\"en\" lang=\"json5\">",
+      "{",
+      "\t",
+      "}",
+      "</i18n>",
+      "<template>",
+      "\t<div class=\"${TM_FILENAME_BASE/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+-}${2:/downcase}/g}\">",
+      "\t</div>",
+      "</template>",
+      "<script>",
+      "export default {",
+      "\tname: '${TM_FILENAME_BASE}',",
+      "}",
+      "</script>",
+      "<style lang=\"postcss\" scoped>",
+      ".${TM_FILENAME_BASE/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+-}${2:/downcase}/g} {",
+      "\t",
+      "}",
+      "</style>"
+    ],
+    "description": "Base for Vue File with POSTCSS"
+  }
+}

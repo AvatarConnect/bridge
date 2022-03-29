@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dariofuzinato.vue-peek",
+    "octref.vetur",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "csstools.postcss",
+    "lokalise.i18n-ally",
+    "dbaeumer.vscode-eslint",
+    "pranaygp.vscode-css-peek",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

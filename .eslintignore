@@ -1,0 +1,9 @@
+dist
+node_modules
+tsconfig.json
+package.json
+package-lock.json
+vercel.json
+workflows
+*.json
+static/sw.js

@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/vercel-builder",
+      "config": {
+        "serverFiles": ["config/*"]
+      }
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "stale-while-revalidate=30, stale-if-error=30"
+        }
+      ]
+    }
+  ]
+}
