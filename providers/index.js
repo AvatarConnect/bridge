@@ -1,11 +1,11 @@
+import CryptoAvatars from './CryptoAvatars'
 import Meebits from './Meebits'
 import ReadyPlayerMe from './ReadyPlayerMe'
 
-const providers = [Meebits, ReadyPlayerMe]
+// Add your provider to this list
+const providers = [ReadyPlayerMe, Meebits, CryptoAvatars]
 
-export const PROVIDER_MAP = providers.reduce(
+export default providers.reduce(
   (acc, provider) => ({ ...acc, [provider.id]: provider }),
   {}
 )
-
-export default providers

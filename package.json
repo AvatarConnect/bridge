@@ -1,10 +1,18 @@
 {
-  "name": "@avatarconnect/connector",
+  "name": "@avatarconnect/bridge",
   "version": "0.0.1",
   "description": "A multi-integration tool bridging the gap between metaverse and web3 avatar projects",
   "private": false,
-  "repository": "https://github.com/AvatarConnect/connector",
+  "repository": "https://github.com/AvatarConnect/bridge",
   "license": "MIT",
+  "author": "MoNA Gallery, Inc.",
+  "contributors": [
+    {
+      "name": "Alex Patin",
+      "email": "alex@mona.gallery",
+      "url": "https://www.patin.xyz"
+    }
+  ],
   "scripts": {
     "dev": "nuxt --standalone",
     "build": "nuxt build",
@@ -31,6 +39,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@intlify/vue-i18n-loader": "^2.1.0",
+    "@walletconnect/web3-provider": "^1.7.7",
     "babel-eslint": "^10.1.0",
     "bignumber.js": "^9.0.1",
     "core-js": "^3.9.1",

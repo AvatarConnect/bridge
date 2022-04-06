@@ -25,7 +25,9 @@ module.exports = {
         fadeSlideUpSlow: 'fadeSlideUp 2s ease',
       },
       colors: {
-        primary: '#FF2D55',
+        primary: '#5200FF',
+        secondary: '#FF7ECC',
+        tertiary: '#181818',
       },
       keyframes: {
         fadeSlideDown: {

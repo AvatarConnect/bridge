@@ -2,7 +2,7 @@ import { resolve } from 'path'
 
 export default {
   alias: {
-    '@': resolve(__dirname, '../workspaces'),
+    '@': resolve(__dirname, '../components'),
     '@local': resolve(__dirname, '../packages'),
     '~': resolve(__dirname, '../'),
   },

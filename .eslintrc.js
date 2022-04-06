@@ -5,7 +5,7 @@ module.exports = {
       alias: {
         extensions: ['.ts', 'tsx', '.graphql', '.js', '.jsx', '.json', '.vue'],
         map: [
-          ['@', './workspaces/'],
+          ['@', './components/'],
           ['~', './'],
           ['@local', './packages/'],
         ],
