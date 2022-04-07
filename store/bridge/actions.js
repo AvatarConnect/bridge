@@ -1,7 +1,5 @@
 import Providers from '~/providers'
 
-const providerList = Object.values(Providers).map(({ id }) => id)
-
 const getPropValue = (
   provider,
   key,
@@ -31,23 +29,27 @@ const prepareProps = (provider, values = {}) => {
   )
 }
 
-const mergeConfig = (selectedProviders, providedConfig) => {
-  const result = selectedProviders.reduce(
-    (acc, provider) => ({
-      ...acc,
-      [provider]: prepareProps(Providers[provider], providedConfig[provider]),
-    }),
-    {}
-  )
+const mergeConfig = selectedProviders => {
+  const result = selectedProviders.reduce((acc, provider) => {
+    const isTuple = typeof provider !== 'string'
+    const name = isTuple ? provider[0] : provider
+    const config = isTuple ? provider[1] : {}
+    return { ...acc, [name]: prepareProps(Providers[name], config) }
+  }, {})
   return result
 }
 
 export default {
   configureProviders({ commit }, config = {}) {
     try {
-      const { providers = providerList, ...providerConfig } = config
-      commit('SET_SUPPORTED_PROVIDERS', providers)
-      commit('SET_PROVIDER_CONFIG', mergeConfig(providers, providerConfig))
+      const { providers } = config
+      commit(
+        'SET_SUPPORTED_PROVIDERS',
+        providers.map(provider =>
+          typeof provider === 'string' ? provider : provider[0]
+        )
+      )
+      commit('SET_PROVIDER_CONFIG', mergeConfig(providers))
     } catch (error) {
       throw new Error('Invalid configuration provided')
     }

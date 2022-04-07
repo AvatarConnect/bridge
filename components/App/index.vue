@@ -6,16 +6,18 @@
     <Snackbar />
 
     <Breakpoints />
+    <SessionManager />
   </div>
 </template>
 <script>
 import Snackbar from './components/Snackbar'
 
 import Breakpoints from './controllers/Breakpoints'
+import SessionManager from './controllers/SessionManager'
 
 export default {
   name: 'App',
-  components: { Breakpoints, Snackbar },
+  components: { Breakpoints, SessionManager, Snackbar },
 }
 </script>
 <style lang="postcss">

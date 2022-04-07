@@ -22,7 +22,10 @@ export default {
       '@avatarconnect/sdk'
     )
     // Check if running as standalone client (not in iframe)
-    if (!this.isIframe) this.configure()
+    if (!this.isIframe)
+      this.configure({
+        providers: ['ready-player-me', 'meebits', 'crypto-avatars'],
+      })
     else {
       this.iframeBus.on('configure', this.configure)
       this.iframeBus.send('mounted')

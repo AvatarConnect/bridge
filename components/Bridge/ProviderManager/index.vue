@@ -14,8 +14,6 @@ import bridgeBus from '@/Bridge/Common/mixins/bridgeBus'
 export default {
   name: 'ProviderManager',
   components: {
-    EthereumSignatureStage: () =>
-      import(/* webpackPrefetch: true */ './Stages/EthereumSignatureStage'),
     IframeStage: () =>
       import(/* webpackPrefetch: true */ './Stages/IframeStage'),
     OAuthStage: () => import(/* webpackPrefetch: true */ './Stages/OAuthStage'),
@@ -23,6 +21,7 @@ export default {
       import(/* webpackPrefetch: true */ './Stages/SelectStage'),
     TransformStage: () =>
       import(/* webpackPrefetch: true */ './Stages/TransformStage'),
+    Web3Stage: () => import(/* webpackPrefetch: true */ './Stages/Web3Stage'),
   },
   mixins: [bridgeBus],
   data() {
@@ -50,6 +49,8 @@ export default {
           return 'TransformStage'
         case 'select':
           return 'SelectStage'
+        case 'web3':
+          return 'Web3Stage'
         default:
           return null
       }

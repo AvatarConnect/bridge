@@ -4,10 +4,18 @@ export default {
     await dispatch('connect', providerId)
   },
   async connect({ commit, getters }, providerId) {
-    providerId = providerId || getters.providerId
-    commit('SET_PROVIDER_ID', providerId)
-    await getters.providerConfig.connect(getters.provider)
-    commit('SET_CONNECTED')
+    try {
+      commit('SET_CONNECTING', true)
+      providerId = providerId || getters.providerId
+      commit('SET_PROVIDER_ID', providerId)
+      await getters.providerConfig.connect(getters.provider)
+      const [address] = await getters.provider.request({
+        method: 'eth_requestAccounts',
+      })
+      commit('SET_CONNECTED', address)
+    } finally {
+      commit('SET_CONNECTING', false)
+    }
   },
   async disconnect({ commit, getters }) {
     const { providerConfig, provider } = getters

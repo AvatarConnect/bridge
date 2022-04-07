@@ -7,8 +7,14 @@ export default {
     })
   },
 
-  SET_CONNECTED: state => {
+  SET_CONNECTED: (state, address) => {
+    state.isConnecting = false
     state.isConnected = true
+    state.address = address
+  },
+
+  SET_CONNECTING: (state, connecting) => {
+    state.isConnecting = connecting
   },
 
   SET_PROVIDER_ID: (state, providerId) => {

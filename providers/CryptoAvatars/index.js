@@ -8,8 +8,13 @@ export default {
   id: 'crypto-avatars',
   pipeline: [
     {
-      method: 'eth_personalSign',
-      params: ['[AvatarConnect] Sign message to log into Crypto Avatars'],
+      method: 'personal_sign',
+      params(address) {
+        return [
+          '[AvatarConnect] Sign message to log into Crypto Avatars',
+          address,
+        ]
+      },
       type: 'web3',
     },
     {

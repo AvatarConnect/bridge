@@ -32,5 +32,5 @@ export default {
     []
   ),
 
-  router: { middleware: ['theme'] },
+  router: { middleware: ['publicSession', 'theme'] },
 }

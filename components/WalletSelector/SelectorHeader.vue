@@ -1,6 +1,6 @@
 <i18n locale="en" lang="json5">
 {
-  title: 'Connect a wallet to get started',
+  title: 'Connect a wallet to continue',
   subtitle: {
     question: "Don't have a wallet?",
     cta: 'Get one here',
