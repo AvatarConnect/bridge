@@ -22,7 +22,7 @@ export default {
     // Check if running as standalone client (not in iframe)
     if (!this.isIframe)
       this.configure({
-        providers: ['ready-player-me', 'meebits', 'crypto-avatars'],
+        providers: ['ready-player-me', 'meebits'],
       })
     else {
       this.inboundBus = new IframeBus('@avatarconnect/sdk')
@@ -35,18 +35,18 @@ export default {
   },
   methods: {
     ...mapActions({ configureProviders: 'bridge/configureProviders' }),
-    configure(config) {
+    async configure(config) {
       try {
         this.configureProviders(config)
       } catch (error) {
-        if (!this.isIframe)
+        if (!this.isIframe) {
+          await this.$nextTick()
           return this.$notify('Invalid configuration', 'error')
-        this.sendBridgeBusMessage({
-          params: {
-            details: error.message,
-            message: `You've provided an invalid configuration`,
-          },
-          type: 'error',
+        }
+
+        this.outboundBus.send('error', {
+          details: error.message,
+          message: `You've provided an invalid configuration`,
         })
       }
     },
