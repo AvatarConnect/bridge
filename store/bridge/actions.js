@@ -18,38 +18,39 @@ const getPropValue = (
     : defaultValue
 }
 
-const prepareProps = (provider, values = {}) => {
-  const config = provider.config || {}
-  return Object.keys(config).reduce(
+const prepareProps = ({ config = {}, id }, values = {}) =>
+  Object.keys(config).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: getPropValue(provider.id, key, config[key], values[key]),
+      [key]: getPropValue(id, key, config[key], values[key]),
     }),
     {}
   )
-}
 
-const mergeConfig = selectedProviders => {
-  const result = selectedProviders.reduce((acc, provider) => {
-    const isTuple = typeof provider !== 'string'
-    const name = isTuple ? provider[0] : provider
-    const config = isTuple ? provider[1] : {}
-    return { ...acc, [name]: prepareProps(Providers[name], config) }
-  }, {})
-  return result
-}
+const mergeConfig = providers =>
+  providers.reduce(
+    (acc, { config, id }) => ({
+      ...acc,
+      [id]: prepareProps(Providers[id], config),
+    }),
+    {}
+  )
 
 export default {
-  configureProviders({ commit }, config = {}) {
+  configureProviders({ commit }, { providers = [] } = {}) {
     try {
-      const { providers } = config
+      const normalizedProviders = providers.map(provider => {
+        const isTuple = typeof provider !== 'string'
+        return {
+          config: isTuple ? provider[1] : {},
+          id: isTuple ? provider[0] : provider,
+        }
+      })
       commit(
         'SET_SUPPORTED_PROVIDERS',
-        providers.map(provider =>
-          typeof provider === 'string' ? provider : provider[0]
-        )
+        normalizedProviders.map(({ id }) => id)
       )
-      commit('SET_PROVIDER_CONFIG', mergeConfig(providers))
+      commit('SET_PROVIDER_CONFIG', mergeConfig(normalizedProviders))
     } catch (error) {
       throw new Error('Invalid configuration provided')
     }

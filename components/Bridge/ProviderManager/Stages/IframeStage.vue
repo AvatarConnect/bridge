@@ -35,7 +35,8 @@ export default {
       return getBaseUrl(this.iframeSrc)
     },
     iframeSrc() {
-      return this.stage.getSource.call(this)
+      const src = this.stage.src
+      return typeof src === 'function' ? src.call(this) : src
     },
   },
   mounted() {
