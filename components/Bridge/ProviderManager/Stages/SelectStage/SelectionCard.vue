@@ -78,7 +78,7 @@ export default {
       }
 
       &__container {
-        @apply shadow-2xl;
+        @apply shadow-2xl shadow-blue-200 border-2 border-blue-500;
         left: -8px;
         right: -8px;
         top: -8px;

@@ -171,10 +171,10 @@ export default {
 }
 </script>
 <style lang="postcss" scoped>
-$page-width: 50px;
-
 .m-pagination {
   @apply text-center text-2xl font-black;
+
+  $page-width: 50px;
 
   &__inner {
     @apply flex flex-row;

@@ -1,19 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  darkMode: false,
-  // or 'media' or 'class'
+  content: [
+    `components/**/*.{vue,js}`,
+    `layouts/**/*.vue`,
+    `pages/**/*.vue`,
+    `plugins/**/*.{js,ts}`,
+    `nuxt.config.{js,ts}`,
+  ],
   jit: true,
-  purge: {
-    content: [
-      `components/**/*.{vue,js}`,
-      `layouts/**/*.vue`,
-      `pages/**/*.vue`,
-      `plugins/**/*.{js,ts}`,
-      `nuxt.config.{js,ts}`,
-    ],
-    enabled: process.env.NODE_ENV === 'production',
-  },
+  media: false,
   theme: {
     extend: {
       animation: {

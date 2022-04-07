@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <p v-text="JSON.stringify(result, null, 2)"></p>
-    <p v-if="error" v-text="error"></p>
-  </div>
+  <div></div>
 </template>
 <script>
 import IframeBus from '@local/iframe-bus'

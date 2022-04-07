@@ -24,6 +24,7 @@ export default {
         'postcss-mixins': {},
         'postcss-nested': {},
         'postcss-simple-vars': {},
+        'tailwindcss/nesting': {},
       },
       preset: {
         autoprefixer: {
@@ -38,11 +39,11 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
-
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+
+    // https://go.nuxtjs.dev/eslint
+    '@nuxtjs/eslint-module',
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -31,11 +31,7 @@ export default {
   @apply grid gap-4 place-items-center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-  @screen md {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-
-  @screen sm {
+  @screen lg {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
@@ -43,11 +39,7 @@ export default {
     @apply w-full;
     height: 420px;
 
-    @screen md {
-      height: 370px;
-    }
-
-    @screen sm {
+    @screen lg {
       height: 370px;
     }
   }
