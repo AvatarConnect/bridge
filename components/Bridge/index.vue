@@ -2,18 +2,17 @@
   <div class="bridge">
     <BridgeNavigation class="bridge__navigation" />
     <div class="bridge__container">
-      <transition-group
+      <transition
+        v-if="!provider"
         class="bridge__content"
-        :name="provider ? 'slide' : 'slide-back'"
+        name="slide-back"
         tag="div"
       >
-        <ProviderSelector
-          v-if="!provider"
-          key="1"
-          class="bridge__provider-selector"
-        />
-        <ProviderManager v-else key="2" class="bridge__provider" />
-      </transition-group>
+        <ProviderSelector class="bridge__provider-selector"
+      /></transition>
+      <transition v-else class="bridge__content" name="slide" tag="div">
+        <ProviderManager class="bridge__provider" />
+      </transition>
     </div>
     <BridgeBusController />
   </div>
@@ -47,7 +46,8 @@ export default {
     @apply fixed top-0 left-0 right-0 z-50;
   }
 
-  &__provider-selector {
+  &__provider-selector,
+  &__provider {
     @apply p-4;
   }
 
@@ -56,33 +56,25 @@ export default {
   }
 
   &__content {
-    @apply mb-4;
-  }
-
-  &__provider {
-    @apply h-full;
+    @apply mb-4 p-4;
   }
 }
 
-.slide-leave-active,
-.slide-enter-active {
-  transition: 0.3s;
-}
+.slide-back-leave-to,
 .slide-enter {
   transform: translate(100%, 0);
 }
+
+.slide-back-enter,
 .slide-leave-to {
   transform: translate(-100%, 0);
 }
 
+.slide-leave-active,
+.slide-enter-active,
 .slide-back-leave-active,
 .slide-back-enter-active {
-  transition: 0.3s;
-}
-.slide-back-enter {
-  transform: translate(-100%, 0);
-}
-.slide-back-leave-to {
-  transform: translate(100%, 0);
+  transition: 0.15s;
+  @apply absolute top-0 left-0 right-0;
 }
 </style>

@@ -28,7 +28,7 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .select-stage {
-  @apply p-4 grid gap-4 place-items-center;
+  @apply grid gap-4 place-items-center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
   @screen md {
