@@ -6,7 +6,8 @@ export default {
   name: 'BridgeBusController',
   data() {
     return {
-      iframeBus: null,
+      inboundBus: null,
+      outboundBus: null,
     }
   },
   computed: {
@@ -17,15 +18,17 @@ export default {
   mounted() {
     if (!process.browser) return
     this.$bus.on('bridge-bus-event', this.sendBridgeBusMessage)
-    this.iframeBus = new IframeBus('@avatarconnect/sdk')
+    this.outboundBus = new IframeBus('@avatarconnect/bridge')
     // Check if running as standalone client (not in iframe)
     if (!this.isIframe)
       this.configure({
         providers: ['ready-player-me', 'meebits', 'crypto-avatars'],
       })
     else {
-      this.iframeBus.on('configure', this.configure)
-      this.iframeBus.send('mounted')
+      this.inboundBus = new IframeBus('@avatarconnect/sdk')
+      this.inboundBus.on('configure', this.configure)
+      this.outboundBus.send('mounted')
+      this.outboundBus.send('debug', ['HERE', 'test'])
     }
   },
   beforeDestroy() {
@@ -34,6 +37,7 @@ export default {
   methods: {
     ...mapActions({ configureProviders: 'bridge/configureProviders' }),
     configure(config) {
+      this.outboundBus.send('debug', ['HERE'])
       try {
         this.configureProviders(config)
       } catch (error) {
@@ -49,7 +53,7 @@ export default {
       }
     },
     sendBridgeBusMessage({ params, type }) {
-      this.iframeBus.send(type, params)
+      this.outboundBus.send(type, params)
     },
   },
   render: () => null,

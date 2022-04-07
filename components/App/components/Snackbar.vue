@@ -1,5 +1,5 @@
 <template>
-  <transition-group name="fade" class="snackbar">
+  <transition-group name="fade" class="snackbar" tag="div">
     <div
       v-for="{ icon, id, message, mode } in snacks"
       :key="id"
@@ -78,7 +78,7 @@ export default {
 }
 </script>
 <style lang="postcss" scoped>
-.m-snackbar {
+.snackbar {
   @apply fixed bottom-10 w-full flex flex-col space-y-4 items-center z-50 pointer-events-none;
   @apply sm:top-10 sm:bottom-auto;
 
