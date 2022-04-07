@@ -11,12 +11,10 @@
     class="bridge-navigation"
     :class="[!providerId && 'bridge-navigation--first-step']"
   >
-    <ac-icon
-      class="bridge-navigation__stepper"
-      :icon="backIcon"
-      @click.native="clearProvider"
-    />
-    <h3 class="bridge-navigation__title" v-text="title"></h3>
+    <div class="bridge-navigation__content" @click="clearProvider">
+      <ac-icon class="bridge-navigation__stepper" :icon="backIcon" />
+      <h3 class="bridge-navigation__title" v-text="title"></h3>
+    </div>
   </div>
 </template>
 <script>
@@ -54,12 +52,21 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .bridge-navigation {
-  @apply w-full px-4 py-3 bg-white flex items-center;
+  @apply w-full px-4 py-3 bg-white;
+  @apply backdrop-filter backdrop-blur-md bg-white bg-opacity-50;
 
   &--first-step {
     .bridge-navigation__stepper {
       @apply opacity-0;
     }
+
+    .bridge-navigation__content {
+      @apply cursor-default;
+    }
+  }
+
+  &__content {
+    @apply inline-flex items-center justify-start cursor-pointer;
   }
 
   &__stepper {

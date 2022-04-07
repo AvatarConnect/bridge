@@ -1,7 +1,14 @@
 export default {
+  image: {
+    cloudinary: {
+      // eslint-disable-next-line xss/no-mixed-html
+      baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_NAME}/image/fetch/`,
+    },
+  },
   modules: [
     'nuxt-route-meta',
     '@nuxtjs/axios',
+    '@nuxt/image',
     '@nuxtjs/pwa',
     'nuxt-user-agent',
     ['nuxt-helmet', { frameguard: false }],
