@@ -6,7 +6,7 @@
       :stage="stage"
       :item="item"
       class="select-stage__card"
-      @click="select(item)"
+      @click.native="select(item)"
     />
   </div>
 </template>

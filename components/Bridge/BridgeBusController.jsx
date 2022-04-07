@@ -12,7 +12,7 @@ export default {
   },
   computed: {
     isIframe() {
-      return window && window.self !== window.top
+      return window && window.self !== window.parent
     },
   },
   mounted() {
@@ -28,7 +28,6 @@ export default {
       this.inboundBus = new IframeBus('@avatarconnect/sdk')
       this.inboundBus.on('configure', this.configure)
       this.outboundBus.send('mounted')
-      this.outboundBus.send('debug', ['HERE', 'test'])
     }
   },
   beforeDestroy() {
@@ -37,7 +36,6 @@ export default {
   methods: {
     ...mapActions({ configureProviders: 'bridge/configureProviders' }),
     configure(config) {
-      this.outboundBus.send('debug', ['HERE'])
       try {
         this.configureProviders(config)
       } catch (error) {

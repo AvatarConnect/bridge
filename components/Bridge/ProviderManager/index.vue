@@ -73,8 +73,7 @@ export default {
   },
   methods: {
     handleError(error) {
-      // eslint-disable-next-line no-console
-      console.log(error)
+      this.$debug(error)
     },
     async handleResult(result) {
       const { providerPipeline, stage } = this

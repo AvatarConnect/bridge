@@ -22,7 +22,7 @@ class IframeBus extends EventEmitter {
 
   send(event, params = null) {
     const { _sender: sender } = this
-    window.top.postMessage(JSON.stringify({ event, params, sender }), '*')
+    window.parent.postMessage(JSON.stringify({ event, params, sender }), '*')
   }
 
   _handleMessage({ data, origin }) {
