@@ -29,13 +29,17 @@ export default {
             },
           }
         )
-        return { result: data }
+        return data
       },
       type: 'transform',
     },
     {
-      getImage: ({ metadata: { image } }) => image,
-      getName: ({ metadata: { name } }) => name,
+      image({ metadata: { image } }) {
+        return image
+      },
+      name({ metadata: { name } }) {
+        return name
+      },
       type: 'select',
     },
   ],

@@ -1,4 +1,4 @@
-import Providers from '~/providers'
+import Providers from './providers'
 
 export default {
   activeProvider: state => {
