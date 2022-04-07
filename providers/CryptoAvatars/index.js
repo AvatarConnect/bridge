@@ -3,34 +3,29 @@ import icon from './icon.png'
 const CRYPTO_AVATARS_API = 'https://api.cryptoavatars.io'
 
 export default {
+  config: {
+    apiKey: { required: true, type: String },
+  },
   description: '3D avatars as NFTs for use across multiple virtual worlds',
   icon,
   id: 'crypto-avatars',
   pipeline: [
     {
-      method: 'personal_sign',
-      params(address) {
-        return [
-          '[AvatarConnect] Sign message to log into Crypto Avatars',
-          address,
-        ]
+      format(result) {
+        const [address] = result
+        return address
       },
+      method: 'eth_requestAccounts',
       type: 'web3',
     },
     {
-      async transform({ address, signature }) {
-        const {
-          data: { access_token: accessToken },
-        } = await this.$axios.post(`${CRYPTO_AVATARS_API}/login`, {
-          signature,
-          wallet: address,
-        })
-
+      async transform() {
         const { data } = await this.$axios.get(
-          `${CRYPTO_AVATARS_API}/nfts/${address}`,
+          `${CRYPTO_AVATARS_API}/nfts/avatars/${this.aggregate}?skip=0&limit=20`,
           {
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              'API-KEY': this.config.apiKey,
+              accept: 'application/json',
             },
           }
         )

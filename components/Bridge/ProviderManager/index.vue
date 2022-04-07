@@ -31,7 +31,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ provider: 'bridge/activeProvider' }),
+    ...mapGetters({
+      config: 'bridge/activeProviderConfig',
+      provider: 'bridge/activeProvider',
+    }),
     currentStage() {
       const { providerPipeline, stage } = this
       return providerPipeline[stage]
@@ -68,8 +71,9 @@ export default {
     },
   },
   methods: {
-    handleResult(result) {
+    async handleResult(result) {
       const { providerPipeline, stage } = this
+      if (stage.format) result = stage.format.call(this, result)
       if (stage + 1 === providerPipeline.length)
         return this.resolveToClient(result)
       this.aggregate = result

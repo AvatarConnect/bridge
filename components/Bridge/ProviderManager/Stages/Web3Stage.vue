@@ -31,7 +31,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      address: 'web3/address',
       isConnected: 'web3/isConnected',
       isConnecting: 'web3/isConnecting',
       web3Provider: 'web3/provider',
@@ -51,9 +50,7 @@ export default {
           stage: { method, params },
         } = this
         const normalizedParams =
-          typeof params === 'function'
-            ? params.call(this, this.address)
-            : params
+          typeof params === 'function' ? params.call(this) : params || []
         const result = await this.web3Provider.request({
           method,
           params: normalizedParams,

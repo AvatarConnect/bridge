@@ -12,6 +12,9 @@ export default {
     stage: { required: true, type: Object },
   },
   computed: {
-    ...mapGetters({ $config: 'bridge/activeProviderConfig' }),
+    ...mapGetters({
+      config: 'bridge/activeProviderConfig',
+      ethereumAddress: 'web3/address',
+    }),
   },
 }

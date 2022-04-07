@@ -24,7 +24,7 @@ export default {
         return { avatarUri, extension, metadataUri }
       },
       src() {
-        return `https://${this.$config.gateway}.readyplayer.me`
+        return `https://${this.config.gateway}.readyplayer.me`
       },
       type: 'iframe',
     },
