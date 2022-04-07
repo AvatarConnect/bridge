@@ -24,10 +24,10 @@ export default {
       type: 'oauth',
     },
     {
-      getImage({ imageUrl }) {
-        return `https://meebits.larvalabs.com${imageUrl}`
+      image({ imageUrl }) {
+        return imageUrl
       },
-      getName({ index }) {
+      name({ index }) {
         return `Meebit ${index}`
       },
       type: 'select',

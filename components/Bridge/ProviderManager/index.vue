@@ -4,6 +4,7 @@
     class="provider-manager"
     v-bind="currentStageProps"
     @result="handleResult"
+    @error="handleError"
   />
 </template>
 <script>
@@ -71,6 +72,10 @@ export default {
     },
   },
   methods: {
+    handleError(error) {
+      // eslint-disable-next-line no-console
+      console.log(error)
+    },
     async handleResult(result) {
       const { providerPipeline, stage } = this
       if (stage.format) result = stage.format.call(this, result)

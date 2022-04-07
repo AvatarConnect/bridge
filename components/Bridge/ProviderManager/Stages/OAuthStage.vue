@@ -23,6 +23,8 @@
   </div>
 </template>
 <script>
+import { getBaseUrl } from '~/utils/helpers'
+
 import IframeBus from '@local/iframe-bus'
 
 import stage from './Common/mixins/stage'
@@ -33,7 +35,7 @@ export default {
   computed: {
     redirectUri() {
       const {
-        provider: providerId,
+        provider: { id: providerId },
         stage: { redirect },
       } = this
 
@@ -51,9 +53,15 @@ export default {
   },
   mounted() {
     if (!process.browser) return
-    const bus = new IframeBus({ sender: '@avatarconnect/bridge/oauth' })
-    bus.on('oauth-result', result => {
-      this.$emit('result', result)
+    const origin = getBaseUrl(window.location.href)
+    const bus = new IframeBus('@avatarconnect/bridge/oauth', { origin })
+    bus.on('oauth-result', async query => {
+      try {
+        const result = await this.stage.callbackHandler.call(this, query)
+        this.$emit('result', result)
+      } catch (error) {
+        this.$emit('error', error)
+      }
     })
   },
 }

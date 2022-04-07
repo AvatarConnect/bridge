@@ -17,8 +17,6 @@ export default {
       const result = await this.stage.transform.call(this)
       this.$emit('result', result)
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error)
       this.$emit('error', error)
     }
   },

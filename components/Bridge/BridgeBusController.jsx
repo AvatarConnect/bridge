@@ -17,10 +17,7 @@ export default {
   mounted() {
     if (!process.browser) return
     this.$bus.on('bridge-bus-event', this.sendBridgeBusMessage)
-    this.iframeBus = new IframeBus(
-      '@avatarconnect/bridge',
-      '@avatarconnect/sdk'
-    )
+    this.iframeBus = new IframeBus('@avatarconnect/sdk')
     // Check if running as standalone client (not in iframe)
     if (!this.isIframe)
       this.configure({
