@@ -34,6 +34,9 @@ export default {
       type: 'transform',
     },
     {
+      format({ metadata: { asset, vtubingAsset } }) {
+        return { asset, vtubingAsset }
+      },
       image({ metadata: { image } }) {
         return image
       },
