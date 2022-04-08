@@ -1,6 +1,9 @@
 import { mapGetters } from 'vuex'
 
+import bridgeBus from '@/Bridge/Common/mixins/bridgeBus'
+
 export default {
+  mixins: [bridgeBus],
   props: {
     /** The aggregate result from each stage */
     aggregate: { required: true, type: null },

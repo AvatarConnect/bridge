@@ -46,12 +46,10 @@ export default {
     window.removeEventListener('message', this.receiveMessage)
   },
   methods: {
-    receiveMessage(event) {
+    async receiveMessage(event) {
       if (event.origin !== this.baseUrl || !event.data) return
-      /**
-       * @event message Emitted when the iframe sends a message to the parent
-       */
-      this.$emit('result', event.data)
+      const result = await this.stage.handleMessage.call(this, event.data)
+      this.$emit('result', result)
     },
   },
 }

@@ -60,6 +60,7 @@ export default {
   &__container {
     @apply absolute inset-0 transition-all;
     @apply rounded-2xl bg-no-repeat bg-cover bg-center px-3;
+    background-color: white;
     background-image: var(--background-image);
     transform: translate3d(0, 0, 0);
   }

@@ -34,8 +34,8 @@ export default {
       type: 'transform',
     },
     {
-      format({ metadata: { asset, vtubingAsset } }) {
-        return { asset, vtubingAsset }
+      format({ metadata: { asset } }) {
+        return { avatar: { type: 'vrm', uri: asset } }
       },
       image({ metadata: { image } }) {
         return image

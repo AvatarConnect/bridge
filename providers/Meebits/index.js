@@ -1,35 +1,42 @@
 import icon from './icon.svg'
 
 const MEEBITS_API = `https://meebits.larvalabs.com/api/v1/account`
-const AVATAR_FILES = [
-  'FBX',
-  'GLB',
-  'VRM',
-  'Vox',
-  'Vox3DPrint',
-  'VoxTPose',
-  'VoxTPoseCored',
-]
+
+const OUTPUT_TYPES = {
+  fbx: 'FBX',
+  glb: 'GLB',
+  vox: 'Vox',
+  'vox-t-pose': 'VoxTPose',
+  'vox-t-pose-cored': 'VoxTPoseCored',
+  vrm: 'VRM',
+}
 
 const formatMetadata = (
   { imageUrl, index, type, ...ownerFiles },
-  accessToken
+  accessToken,
+  outputType
 ) => ({
+  avatar: {
+    type: outputType,
+    uri: `${
+      ownerFiles[`ownerDownload${OUTPUT_TYPES[outputType]}`]
+    }?accessToken=${accessToken}`,
+  },
   imageUrl,
   index,
-  type,
-  ...AVATAR_FILES.reduce(
-    (acc, filename) => ({
-      ...acc,
-      [`ownerDownload${filename}`]: `${
-        ownerFiles[`ownerDownload${filename}`]
-      }?accessToken=${accessToken}`,
-    }),
-    {}
-  ),
+  metadata: {
+    type,
+  },
 })
 
 export default {
+  config: {
+    output: {
+      default: 'vrm',
+      type: String,
+      validate: type => [Object.keys(OUTPUT_TYPES)].includes(type),
+    },
+  },
   description: '20,000 unique 3D voxel characters',
   icon,
   id: 'meebits',
@@ -45,7 +52,9 @@ export default {
         } = await this.$axios.get(
           `${MEEBITS_API}/${account}?accessToken=${accessToken}`
         )
-        return meebits.map(meebit => formatMetadata(meebit, accessToken))
+        return meebits.map(meebit =>
+          formatMetadata(meebit, accessToken, this.config.output)
+        )
       },
       redirect(callback) {
         return `https://meebits.larvalabs.com/meebits/apiAccessRequest?callbackUrl=${callback}`
@@ -53,6 +62,10 @@ export default {
       type: 'oauth',
     },
     {
+      format(result) {
+        const { avatar, metadata } = result
+        return { avatar, metadata }
+      },
       image({ imageUrl }) {
         return imageUrl
       },

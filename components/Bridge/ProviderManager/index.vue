@@ -73,7 +73,12 @@ export default {
   },
   methods: {
     handleError(error) {
-      this.$debug(error)
+      // eslint-disable-next-line no-console
+      console.error(error)
+      this.$sendMessage('error', {
+        details: error,
+        message: error.message,
+      })
     },
     async handleResult(result) {
       const { currentStage, providerPipeline, stage } = this
@@ -83,11 +88,15 @@ export default {
       this.aggregate = result
       this.stage += 1
     },
-    resolveToClient(result) {
-      const { provider } = this
+    resolveToClient({ avatar, metadata = {} } = {}) {
+      if (!avatar || !avatar.uri || !avatar.type)
+        return this.handleError(
+          new Error('The provider returned an invalid response format')
+        )
       this.$sendMessage('result', {
-        type: provider.id,
-        [provider.id]: result,
+        avatar,
+        metadata,
+        provider: this.provider.id,
       })
     },
   },

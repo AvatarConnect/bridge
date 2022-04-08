@@ -21,7 +21,10 @@ export default {
         const avatarUri = `${message}?v=${version}`
         const extension = getExtension(avatarUri)
         const metadataUri = replaceExtension(avatarUri)
-        return { avatarUri, extension, metadataUri }
+        return {
+          avatar: { type: 'glb', uri: avatarUri },
+          metadata: { extension, metadataUri },
+        }
       },
       src() {
         return `https://${this.config.gateway}.readyplayer.me`
