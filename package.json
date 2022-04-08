@@ -21,7 +21,6 @@
     "vercel-build": "yarn global add node-gyp-build"
   },
   "dependencies": {
-    "@nuxt/image": "0.4.17",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/pwa": "^3.3.5",

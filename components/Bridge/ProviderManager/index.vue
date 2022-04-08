@@ -77,7 +77,6 @@ export default {
     },
     async handleResult(result) {
       const { currentStage, providerPipeline, stage } = this
-      this.$debug(Object.keys(stage))
       if (currentStage.format) result = currentStage.format.call(this, result)
       if (stage + 1 === providerPipeline.length)
         return this.resolveToClient(result)

@@ -21,7 +21,7 @@ export default {
     {
       async transform() {
         const { data } = await this.$axios.get(
-          `${CRYPTO_AVATARS_API}/nfts/avatars/0x553BFf333348548cfABF3b4fCb49eF5f2C28c10a?skip=0&limit=20`,
+          `${CRYPTO_AVATARS_API}/nfts/avatars/${this.aggregate}?skip=0&limit=20`,
           {
             headers: {
               'API-KEY': this.config.apiKey,

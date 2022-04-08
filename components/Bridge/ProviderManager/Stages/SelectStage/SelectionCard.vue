@@ -29,7 +29,7 @@ export default {
     imageProps() {
       const { image } = this
       return {
-        fit: 'cover',
+        fit: 'fill',
         height: 600,
         src: image,
         width: 400,

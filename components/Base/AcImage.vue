@@ -12,8 +12,7 @@ export default {
     fit: {
       default: undefined,
       type: String,
-      validator: v =>
-        ['cover', 'contain', 'inside', 'fill', 'outside'].includes(v),
+      validator: v => ['fill', 'crop', 'fit'].includes(v),
     },
 
     /** Resolution height */
