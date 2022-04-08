@@ -14,6 +14,5 @@ export default {
     state.supportedProviders
       .map(id => Providers[id])
       .filter(provider => !!provider),
-  supportedProviders: state =>
-    state.supportedProviders || ['meebits', 'readyplayerme'],
+  supportedProviders: state => state.supportedProviders || [],
 }
