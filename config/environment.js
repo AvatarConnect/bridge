@@ -1,3 +1,5 @@
+import pkg from '../package.json'
+
 export default {
   privateRuntimeConfig: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
@@ -5,6 +7,7 @@ export default {
     deploymentEnv: process.env.DEPLOYMENT_ENV,
     infuraId: process.env.INFURA_ID,
     runtime: process.env.DEPLOYMENT_ENV || 'development',
+    version: pkg.version,
   },
 
   publicRuntimeConfig: {
@@ -13,5 +16,6 @@ export default {
     deploymentEnv: process.env.DEPLOYMENT_ENV,
     infuraId: process.env.INFURA_ID,
     runtime: process.env.DEPLOYMENT_ENV || 'development',
+    version: pkg.version,
   },
 }

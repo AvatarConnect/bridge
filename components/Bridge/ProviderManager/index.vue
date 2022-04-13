@@ -97,6 +97,7 @@ export default {
         avatar,
         metadata,
         provider: this.provider.id,
+        version: this.$config.version,
       })
     },
   },
