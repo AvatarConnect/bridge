@@ -11,7 +11,8 @@
       class="ac-empty-list__illustration"
     />
     <h3 class="ac-empty-list__title" v-text="title"></h3>
-    <p v-text="subtitle"></p>
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <p v-html="subtitle"></p>
   </div>
 </template>
 <script>

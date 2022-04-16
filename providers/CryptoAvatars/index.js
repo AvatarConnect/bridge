@@ -9,6 +9,7 @@ export default {
   description: '3D avatars as NFTs for use across multiple virtual worlds',
   icon,
   id: 'crypto-avatars',
+  name: 'CryptoAvatar',
   pipeline: [
     {
       format(result) {
@@ -46,5 +47,6 @@ export default {
       type: 'select',
     },
   ],
+  purchaseLink: 'https://cryptoavatars.io/market',
   title: 'Crypto Avatars',
 }

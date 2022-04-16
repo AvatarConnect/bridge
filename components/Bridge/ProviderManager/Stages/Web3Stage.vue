@@ -67,5 +67,6 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .web3-stage {
+  @apply mt-12;
 }
 </style>

@@ -40,7 +40,7 @@ export default {
   description: '20,000 unique 3D voxel characters',
   icon,
   id: 'meebits',
-  name: 'Meebit|Meebits',
+  name: 'Meebit',
   pipeline: [
     {
       async callbackHandler(query) {
