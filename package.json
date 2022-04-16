@@ -34,6 +34,7 @@
     "nuxt-user-agent": "^1.2.2"
   },
   "devDependencies": {
+    "@avatarconnect/sdk": "^0.0.3",
     "@fortawesome/fontawesome-svg-core": "1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
