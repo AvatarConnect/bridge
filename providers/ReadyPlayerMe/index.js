@@ -16,7 +16,7 @@ export default {
     {
       handleMessage(message) {
         if (!isUrl(message))
-          return this.$notify(this.$t('errors.generic'), 'error')
+          throw new Error('Result provided is not a valid URL')
         const version = Math.floor(Math.random() * 100000) // We use this to cache-bust on the client side
         const avatarUri = `${message}?v=${version}`
         const extension = getExtension(avatarUri)
