@@ -89,7 +89,7 @@ export default {
       this.stage += 1
     },
     resolveToClient({ avatar, metadata = {} } = {}) {
-      if (!avatar || !avatar.uri || !avatar.type)
+      if (!avatar || !avatar.uri || !avatar.type || avatar.format === undefined)
         return this.handleError(
           new Error('The provider returned an invalid response format')
         )

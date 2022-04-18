@@ -22,7 +22,7 @@ export default {
         const extension = getExtension(avatarUri)
         const metadataUri = replaceExtension(avatarUri)
         return {
-          avatar: { type: 'glb', uri: avatarUri },
+          avatar: { format: 'glb', type: 'humanoid', uri: avatarUri },
           metadata: { extension, metadataUri },
         }
       },

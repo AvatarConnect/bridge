@@ -2,7 +2,7 @@ import icon from './icon.svg'
 
 const MEEBITS_API = `https://meebits.larvalabs.com/api/v1/account`
 
-const OUTPUT_TYPES = {
+const FORMATS = {
   fbx: 'FBX',
   glb: 'GLB',
   vox: 'Vox',
@@ -14,27 +14,25 @@ const OUTPUT_TYPES = {
 const formatMetadata = (
   { imageUrl, index, type, ...ownerFiles },
   accessToken,
-  outputType
+  format
 ) => ({
   avatar: {
-    type: outputType,
+    format,
+    type: type === 'HUMAN' ? 'humanoid' : null,
     uri: `${
-      ownerFiles[`ownerDownload${OUTPUT_TYPES[outputType]}`]
+      ownerFiles[`ownerDownload${FORMATS[format]}`]
     }?accessToken=${accessToken}`,
   },
   imageUrl,
   index,
-  metadata: {
-    type,
-  },
 })
 
 export default {
   config: {
-    output: {
+    format: {
       default: 'vrm',
       type: String,
-      validate: type => [Object.keys(OUTPUT_TYPES)].includes(type),
+      validate: type => [Object.keys(FORMATS)].includes(type),
     },
   },
   description: '20,000 unique 3D voxel characters',
@@ -53,7 +51,7 @@ export default {
           `${MEEBITS_API}/${account}?accessToken=${accessToken}`
         )
         return meebits.map(meebit =>
-          formatMetadata(meebit, accessToken, this.config.output)
+          formatMetadata(meebit, accessToken, this.config.format)
         )
       },
       redirect(callback) {
@@ -62,10 +60,7 @@ export default {
       type: 'oauth',
     },
     {
-      format(result) {
-        const { avatar, metadata } = result
-        return { avatar, metadata }
-      },
+      format: ({ avatar }) => ({ avatar }),
       image({ imageUrl }) {
         return imageUrl
       },

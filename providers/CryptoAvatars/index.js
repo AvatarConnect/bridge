@@ -36,7 +36,7 @@ export default {
     },
     {
       format({ metadata: { asset } }) {
-        return { avatar: { type: 'vrm', uri: asset } }
+        return { avatar: { format: 'vrm', type: 'humanoid', uri: asset } }
       },
       image({ metadata: { image } }) {
         return image
