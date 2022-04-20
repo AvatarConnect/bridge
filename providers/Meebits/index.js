@@ -21,7 +21,7 @@ const formatMetadata = (
     type: type === 'HUMAN' ? 'humanoid' : null,
     uri: `${
       ownerFiles[`ownerDownload${FORMATS[format]}`]
-    }?accessToken=${accessToken}`,
+    }&accessToken=${accessToken}`,
   },
   imageUrl,
   index,

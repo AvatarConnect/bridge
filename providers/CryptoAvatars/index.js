@@ -4,6 +4,7 @@ const CRYPTO_AVATARS_API = 'https://api.cryptoavatars.io'
 
 export default {
   config: {
+    address: { type: String },
     apiKey: { required: true, type: String },
   },
   description: '3D avatars as NFTs for use across multiple virtual worlds',
@@ -22,7 +23,9 @@ export default {
     {
       async transform() {
         const { data } = await this.$axios.get(
-          `${CRYPTO_AVATARS_API}/nfts/avatars/${this.aggregate}?skip=0&limit=20`,
+          `${CRYPTO_AVATARS_API}/nfts/avatars/${
+            this.config.address || this.aggregate
+          }?skip=0&limit=20`,
           {
             headers: {
               'API-KEY': this.config.apiKey,

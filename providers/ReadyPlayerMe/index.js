@@ -14,16 +14,17 @@ export default {
   name: 'RPM Avatar|RPM Avatars',
   pipeline: [
     {
-      handleMessage(message) {
+      async handleMessage(message) {
         if (!isUrl(message))
           throw new Error('Result provided is not a valid URL')
         const version = Math.floor(Math.random() * 100000) // We use this to cache-bust on the client side
         const avatarUri = `${message}?v=${version}`
         const extension = getExtension(avatarUri)
-        const metadataUri = replaceExtension(avatarUri)
+        const metadataUri = replaceExtension(avatarUri, 'json')
+        const { data: metadata } = await this.$axios.get(metadataUri)
         return {
-          avatar: { format: 'glb', type: 'humanoid', uri: avatarUri },
-          metadata: { extension, metadataUri },
+          avatar: { format: extension, type: 'humanoid', uri: avatarUri },
+          metadata,
         }
       },
       src() {
