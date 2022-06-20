@@ -1,6 +1,6 @@
 import icon from './icon.png'
 
-const CRYPTO_AVATARS_API = 'https://api.cryptoavatars.io'
+const CRYPTO_AVATARS_API = 'https://api.cryptoavatars.io/v1'
 
 export default {
   config: {
